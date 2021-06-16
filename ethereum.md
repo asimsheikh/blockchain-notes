@@ -9,6 +9,7 @@ blockchain, they allow the client to read and write to the Ethereum blockchain.
 
 ### Using Web3.js
 
+```bash
 mkdir web3project
 cd web3project
 
@@ -19,6 +20,7 @@ npm install web3 --save
 node
 
 var Web3 = require('web3')
+```
 
 ### Components of the Web3.js library
 
