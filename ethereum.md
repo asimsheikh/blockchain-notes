@@ -56,7 +56,7 @@ There are two types of accounts Externally Owned Accounts (EOA's) and Contract
 Accounts (CA's). The EOA's are owned by users with a private key whilst CA's are
 held by smart contracts.
 
-* Externally Owned Account (EOA) 
+#### Externally Owned Account (EOA)
 
 Contents: 
  - Account Balance
@@ -67,7 +67,7 @@ Abilities:
  - Initiate smart contracts
  - Transfer value from its wallet
 
-* Contract Accounts (CA)
+#### Contract Accounts (CA)
 
 Are controlled by the code in the smart contract
 
@@ -81,5 +81,22 @@ Abilities:
  - Initiate other smart contracts
  - Execute smart contracts
  - Manipulate storage 
+
+Account State Variables are
+ - Nonce (the number of transactions in EOA or contracts created CA)
+ - Account Balance (balance available in the account in Wei)
+ - Storage Hash (the root node of the patricia tree)
+ - Code Hash (hash of code in the contract always executed when called)
+
+Note because the code hash cannot change, the contract cannot change once it has
+been deployed.
+
+ 
+ EOA  |  CA
+ -----|-----
+Tied to private key     | Has code
+Doesnt hold code        | Maintains ether balance
+Maintains ether balance | Executed code when triggerd by transaction
+Can send transactions   | 
 
 
