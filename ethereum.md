@@ -31,4 +31,14 @@ tractions and data
 * web3.eth.personal can interact with the Ethereum nodes accounts
 * web3.utils provides utility functions for Ethereum dapps 
 
+### Connect to the Etherum network
+
+```javascript
+let Web3 = require('web3')
+let URL = '<your infura endpoint url>'
+
+let web3 = new Web3(URL)
+let address = '0xA1b591b1248a1F30C9d5Fb3811E8b416FeA1'
+web3.eth.getBalance(address, (err,bal) => { balance = bal }
+```
 
