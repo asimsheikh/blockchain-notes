@@ -82,7 +82,7 @@ Abilities:
  - Execute smart contracts
  - Manipulate storage 
 
-Account State Variables are
+#### Account State Variables are
  - Nonce (the number of transactions in EOA or contracts created CA)
  - Account Balance (balance available in the account in Wei)
  - Storage Hash (the root node of the patricia tree)
@@ -99,4 +99,4 @@ Doesnt hold code        | Maintains ether balance
 Maintains ether balance | Executed code when triggerd by transaction
 Can send transactions   | 
 
-
+# :rocket:
