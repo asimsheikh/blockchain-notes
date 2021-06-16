@@ -50,4 +50,36 @@ let web3 = new Web3(URL)
 let address = '0xA1b591b1248a1F30C9d5Fb3811E8b416FeA1'
 web3.eth.getBalance(address, (err,bal) => { balance = bal }
 ```
+### Ethereum Accounts (Identity)
+
+There are two types of accounts Externally Owned Accounts (EOA's) and Contract
+Accounts (CA's). The EOA's are owned by users with a private key whilst CA's are
+held by smart contracts.
+
+* Externally Owned Account (EOA) 
+
+Contents: 
+ - Account Balance
+ - Transaction Count
+
+Abilities: 
+ - Send transactions
+ - Initiate smart contracts
+ - Transfer value from its wallet
+
+* Contract Accounts (CA)
+
+Are controlled by the code in the smart contract
+
+Contents: 
+ - Account Balance
+ - Transaction Count (number of times it has deployed other CA's)
+ - Smart Contract Code
+
+Abilities: 
+ - Transfer value
+ - Initiate other smart contracts
+ - Execute smart contracts
+ - Manipulate storage 
+
 
