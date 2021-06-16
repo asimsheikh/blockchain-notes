@@ -31,6 +31,15 @@ tractions and data
 * web3.eth.personal can interact with the Ethereum nodes accounts
 * web3.utils provides utility functions for Ethereum dapps 
 
+### Using Infura to connect to Ethereum
+
+We an use Infura as a provider that allows us to connect to the Ethereum
+blockchain, without having to run a full note. 
+
+The service can be signed up for at http://infura.io.
+
+It has access to Mainnet, Ropsten, Kovan and Rinkeby
+
 ### Connect to the Etherum network
 
 ```javascript
