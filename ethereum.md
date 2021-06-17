@@ -94,9 +94,53 @@ been deployed.
  
  EOA  |  CA
  -----|-----
-Tied to private key     | Has code
-Doesnt hold code        | Maintains ether balance
-Maintains ether balance | Executed code when triggerd by transaction
-Can send transactions   | 
+Tied to private key     | 
+Doesnt hold code        | Has code 
+Maintains ether balance | Maintains ether balance
+Can send transactions   | Executed code when triggerd by transaction 
 
 # :rocket:
+
+### Read an Externally Owned Account
+
+An example of converting a balance from Wei into Ether is 
+
+```javascript
+let address = '0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B'
+web3.eth.getBalance(address).then(data => balance = data)
+web3.utils.fromWei(balance, 'ether')
+
+// an example of getting a transaction count
+web3.eth.getTransactionCount(address)
+ .then(console.log)
+
+// using async await syntax 
+
+(async () => {
+    let balance = await web3.eth.getBalance(address)
+    return web3.utils.fromWei(balance, 'ether')
+})()
+
+(async () => {
+    let count = await web3.eth.getTransactionCount(address)
+    console.log(count)
+)()
+```
+### Read a contract account
+
+The process is get the contract address, find the abi, and then use values as
+parameters to the function web3.eth.Contract
+
+```javascript
+var ABI = <get abi from the contract on etherscan.io>
+var contractAddress = '0x0D8775F648430679A709E98d2b0Cb6250d2887EF'
+var contract = new web3.eth.Contract(ABI, contractAddress)
+contract.methods
+
+// retrieve values 
+
+contract.method.name().call().then(data => console.log(data))Î
+contract.method.symbol().call().then(data => console.log(data))
+contract.methods.totalSupply().call().then(data => console.log(data))
+```
+
