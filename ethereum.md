@@ -139,8 +139,8 @@ contract.methods
 
 // retrieve values 
 
-contract.method.name().call().then(data => console.log(data))Î
-contract.method.symbol().call().then(data => console.log(data))
+contract.methods.name().call().then(data => console.log(data))
+contract.methods.symbol().call().then(data => console.log(data))
 contract.methods.totalSupply().call().then(data => console.log(data))
 ```
 
