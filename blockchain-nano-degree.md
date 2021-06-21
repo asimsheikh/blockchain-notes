@@ -14,3 +14,27 @@ command line tool using the following command
 npm install -g ganache-cli
 ganache-cli
 ```
+
+### Connect to your local Ethereum blockchain
+
+Now that you can run a local blockchain, its time to connect and interact with
+it.
+
+```bash
+mkdir etherproject
+cd ethereproject
+
+npm init -y
+npm install web3 --save
+node
+```
+
+Then in the node console you can create a connection the local blockchain and
+find all the accounts for it.
+
+```javascript
+var Web3 = require('web3')
+var web3 = new Web3('http://127.0.0.1:7545') // use URL for your local bc
+var accounts = web3.eth.getAccounts().then(acc => acc)
+```
+
