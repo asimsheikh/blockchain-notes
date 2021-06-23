@@ -91,7 +91,7 @@ Value | The amount of Ether you want to send
 Data, Init | Information used to record the creation and execution of smart
 contracts
 
-__Create a Transaction__
+### Create a Transaction
 
 The steps at a high level are 
 
