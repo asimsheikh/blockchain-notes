@@ -37,7 +37,7 @@ var Web3 = require('web3')
 var web3 = new Web3('http://127.0.0.1:7545') // use URL for your local bc
 var accounts = web3.eth.getAccounts().then(acc => acc)
 ```
-_Connect Web3 to Ganache from an IDE_
+__Connect Web3 to Ganache from an IDE__
 
 Simple place the content of the javacript file named index.js and type the
 command 
@@ -53,7 +53,7 @@ The goal is to
 * discuss the types of transaction and transaction types in Ethereum
 * create a transaction programatically that sends ether between 2 accounts
 
-_Transactions Types_
+__Transactions Types__
 
 There are two major transaction types, Message Calls and Contact Creation, they
 are initiated by an EOA, ie an account with a private key. They move the state
@@ -90,3 +90,50 @@ Gas Limit | Specifies the max number of computational steps the trx is allowed
 Value | The amount of Ether you want to send
 Data, Init | Information used to record the creation and execution of smart
 contracts
+
+__Create a Transaction__
+
+The steps at a high level are 
+
+- Install a library to create transactions
+- Configure our connection to blockchain using Web3
+
+```bash
+npm install ethereumjs-tx
+```
+
+```javascript
+t Web3 = require('web3');
+const EthTx = require('ethereumjs-tx').Transaction;
+
+const URL = 'http://localhost:7545';
+const web3 = new Web3(URL);
+
+const privateKey =
+  '21f242ab40f1b3b7a133967eec74226fd4e8b5b45b2513b2379d219fe873cc3e';
+
+const runTransaction = async () => {
+  const accounts = await web3.eth.getAccounts();
+  const nonce = await web3.eth.getTransactionCount(accounts[0]);
+
+  const params = {
+    nonce: nonce,
+    to: accounts[1],
+    value: web3.utils.toHex(web3.utils.toWei('0.5', 'ether')),
+    gasPrice: web3.utils.toHex(web3.utils.toWei('10', 'gwei')),
+    gasLimit: web3.utils.toHex(21_000),
+  };
+
+  const txn = new EthTx(params);
+  txn.sign(Buffer.from(privateKey, 'hex'));
+
+  const serializedTxn = txn.serialize().toString('hex');
+  const result = await
+web3.eth.sendSignedTransaction(`0x${serializedTxn}`);
+  console.log(result);
+};
+
+runTransaction();
+```
+
+
