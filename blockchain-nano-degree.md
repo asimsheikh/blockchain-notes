@@ -124,7 +124,7 @@ const runTransaction = async () => {
     gasLimit: web3.utils.toHex(21_000),
   };
 
-  const txn = new EthTx(params);
+  const txn = new EthTx(params); // need to add { chain: 'rinkeby'} for testnet
   txn.sign(Buffer.from(privateKey, 'hex'));
 
   const serializedTxn = txn.serialize().toString('hex');
@@ -135,5 +135,65 @@ web3.eth.sendSignedTransaction(`0x${serializedTxn}`);
 
 runTransaction();
 ```
+### Ethereum gas and fees
+
+Transactions in Ethereum take gas, which is paid for in Ether. It functions as
+the rationing device that stops peope from flooding the network with
+transctions. 
+
+- Gas Price is the amount you are willing to pay for a miner to process the
+transaction
+- Gas Limit is the maximum amount of gas a sender is willing to pay for a
+  tranaction
+
+
+### Ethereum metrics
+
+Metrics can be attained from etherstats.net or
+[etherscan](http://etherscan.io/charts/)
+
+Some terms and defitions 
+
+Term | Definition 
+-----|-----------
+Best block | highest block number of the longest valid chain
+Uncles | orphaned blocks 
+LastBlock | the time since the last mined block in seconds 
+AverageBlock | average time between blocks mined
+Difficulty | also known as the mining difficulty
+
+You can get statistics on the current chain using the following commands
+
+```javascript
+web3.eth.getGasPrice().then(console.log)
+web3.eth.getUncle(500, 0) // param is the block number
+web3.eth.getBlockTransactionCount("0x407d73d8a49eeb85d32cf465507dd71d507100c1").then(console.log)
+```
+
+### Improved deployment process
+
+In order to get a more production level setup, as opposed to using remix,
+deploying the contract, copying the abi and the contract address and then
+interacting with our contract through a webapp. We can use the Truffle
+framework to automate most of these tasks.
+
+Using [Truffle](https://trufflesuite.com/truffle)
+
+```bash
+mkdir etherproject
+cd etherproject
+
+npm install truffle -g
+truffle init
+
+truffle compile # compile contracts
+truffle migrate # migrations
+```
+
+Now lets build a contract
+
+
+
+ 
 
 
