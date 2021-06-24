@@ -103,7 +103,7 @@ npm install ethereumjs-tx
 ```
 
 ```javascript
-t Web3 = require('web3');
+const Web3 = require('web3');
 const EthTx = require('ethereumjs-tx').Transaction;
 
 const URL = 'http://localhost:7545';
@@ -192,8 +192,41 @@ truffle migrate # migrations
 
 Now lets build a contract
 
+## 3 - Ethereum DAPP
 
+We create two applications here with the goal of 
 
- 
+- Practicing with the tools to develop DAPPS
+- Implement Smart Contracts to expose Dapp functionalities
+- Learning to test contracts
+- Identify ERC-721 Non-Fungible Tokens
+- Create your ERC-721
 
+### DApps
 
+A Dapp is a decentralised application. The steps are 
+
+- Write a smart contract
+- Deploy to the Ethereum network
+- Write a front end to interact with the contract
+
+### Smart Contracts and Solidity
+
+__What is a smart contract?__
+
+> Its an account controlled by code 
+
+- Its a piece of code that lives on the blockchain
+- A self operating computer program that executes when conditions are met
+- Examples are sending money, receiving money, transfer of assets
+- Core of the Ethereum blockchain
+
+__Smart Contract Properties__
+
+Field | Description
+------|------------
+Address | Unique account address
+Balance | Amount of ether in account
+Storage | Data storage for contract
+
+__Smart Contract Lifecycle__
