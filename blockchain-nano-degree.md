@@ -88,8 +88,7 @@ Nonce | Transaction count from the senders account
 Gas Price | Price per unit of gas you are willing to pay for executing code
 Gas Limit | Specifies the max number of computational steps the trx is allowed
 Value | The amount of Ether you want to send
-Data, Init | Information used to record the creation and execution of smart
-contracts
+Data, Init | Information used to record the creation and execution of smart contracts
 
 ### Create a Transaction
 
@@ -314,3 +313,41 @@ contract StarNotary {
     }
 }
 ```
+
+Then go to the migrations folder create a new file called 2_deploy_contracts.js
+
+```javascript
+const StarNotary = artifacts.require("StarNotary")
+
+module.exports = (deployer) => {
+    deployer.deploy(StarNotary)
+}
+```
+
+Delete everything in the test folder which is left over from the initial unbox
+skeleton.
+
+Then in the test folder add the following code named TestStarNotary.js
+
+```javascript
+const StarNotary = artifacts.require('StarNotary')
+
+var accounts;
+var owner;
+
+contract('StarNotary', accs => {
+    accounts = accs
+    owner = accounts[0]
+})
+
+it('has the correct name', async () => {
+    let instance = await StarNotary.deployed()
+    let starName = await instance.starName.call()
+    assert.equal(starName, "Awesome Udacity Star")
+})
+```
+Note: that function calls like starName do not cost gas and simply return a
+value, they are different to transaction calls which do cost gas and change the
+state of the world.
+
+
