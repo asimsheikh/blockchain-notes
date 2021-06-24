@@ -190,25 +190,7 @@ truffle compile # compile contracts
 truffle migrate # migrations
 ```
 
-Now lets build a contract
-
-## 3 - Ethereum DAPP
-
-We create two applications here with the goal of 
-
-- Practicing with the tools to develop DAPPS
-- Implement Smart Contracts to expose Dapp functionalities
-- Learning to test contracts
-- Identify ERC-721 Non-Fungible Tokens
-- Create your ERC-721
-
-### DApps
-
-A Dapp is a decentralised application. The steps are 
-
-- Write a smart contract
-- Deploy to the Ethereum network
-- Write a front end to interact with the contract
+## 2 - Smart Contracts with Solidity
 
 ### Smart Contracts and Solidity
 
@@ -230,3 +212,102 @@ Balance | Amount of ether in account
 Storage | Data storage for contract
 
 __Smart Contract Lifecycle__
+
+The smart contract lifecycle is 
+
+ Develop -> Deploy -> Invoke -> Self-Destruct
+
+- __Develop__ We write the contract and compile
+- __Deploy__ Once deployed you cannot edit the contract, you get the address
+  where the contract was deployed
+- __Invoke__ Use the address to run functions on it 
+- __Destroy__ Whilst this is optional its important as destroying the
+  contract once its not required will stop it from accepting funds
+
+
+## 3 - Ethereum DAPP
+
+We create two applications here with the goal of 
+
+- Practicing with the tools to develop DAPPS
+- Implement Smart Contracts to expose Dapp functionalities
+- Learning to test contracts
+- Identify ERC-721 Non-Fungible Tokens
+- Create your ERC-721
+
+### DApps
+
+A Dapp is a decentralised application. The steps are 
+
+- Write a smart contract
+- Deploy to the Ethereum network
+- Write a front end to interact with the contract
+
+### Tools required to finish  this lesson
+
+```bash
+truffle -v  # if not installed then
+npm install truffle -g
+
+mkdir starNotaryV1
+cd starNotaryV1
+truffle unbox webpack 
+
+truffle develop
+```
+Truffle will then create a local blockchain on localhost:9545
+
+Next steps are to connect MetaMask to the local blockchain
+ 
+ Copy URL of blockchain -> Select Networks on MetaMask -> Select Custom RPC ->
+Enter details -> Add Account using private key 
+ 
+Note: the chainId can be found from truffle console with web3.eth.getChainId()
+
+### Testing with Mocha and Chai
+
+__Mocha__ is a testing framework for Javascript
+__Chai__ is an assertion library for Javascript
+
+__Mocha Functions__
+
+Function | Description
+---------|------------
+it | Run a test and make an assertion
+describe | group together it functions
+beforeEach | general setup code before each it function
+afterEach | executes clean up code after each it function
+
+__Chai__
+
+Is an assertion library 
+
+ assert.equal(owner, "Asim Sheikh")
+ assert.typeOf(foo, "string")
+ assert.lengthOf(foo, 3)
+ assert.property(foo, "programming")
+
+### Write Smart Contracts in Truffle project
+
+Remove all the files in contracts folder except Migrations.sol 
+Save the contract StarNotary.sol
+
+```solidity
+pragma solidity ^0.4.20;
+
+contract StarNotary {
+    string public starName;
+    address public starOwner;
+
+    event starClaimed(address owner);
+
+    contructor() public {
+        startName = "Awesome Udacity Star";
+    }
+
+    function claimStar() public {
+        starOwner = msg.sender;
+        emit starClaimed(msg.sender);
+    }
+}
+```
