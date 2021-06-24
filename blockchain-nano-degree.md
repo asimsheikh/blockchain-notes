@@ -282,14 +282,17 @@ __Chai__
 
 Is an assertion library 
 
+```javascript
  assert.equal(owner, "Asim Sheikh")
  assert.typeOf(foo, "string")
  assert.lengthOf(foo, 3)
  assert.property(foo, "programming")
+```
 
 ### Write Smart Contracts in Truffle project
 
 Remove all the files in contracts folder except Migrations.sol 
+
 Save the contract StarNotary.sol
 
 ```solidity
