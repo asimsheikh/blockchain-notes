@@ -350,4 +350,52 @@ Note: that function calls like starName do not cost gas and simply return a
 value, they are different to transaction calls which do cost gas and change the
 state of the world.
 
+We updated the test file to test for setting an owner and changing an owner
+
+```javascript
+const StarNotary = artifacts.require('StarNotary')
+
+var accounts;
+var owner;
+
+contract('StarNotary', (accs) => {
+    accounts = accs
+    owner = accounts[0]
+})
+
+it('has correct name', async () => {
+    let instance = await StarNotary.deployed()
+    let starName = await instance.starName.call()
+    assert.equal(starName, "Awesome Udacity Star")
+})
+
+it('can be claimed', async () => { 
+    let instance = await StarNotary.deployed()
+    await instance.claimStar({from: owner})
+    let result = await instance.starOwner.call()
+    assert.equal(result, owner)
+})
+
+it('ownership can be changed', async () => {
+    let instance = await StarNotary.deployed()
+    let firstOwner = accounts[0]
+    instance.claimStar({from: firstOwner})
+    var result = await instance.starOwner.call()
+    assert.equal(result, firstOwner)
+
+    let secondOwner = accounts[0]
+    instance.claimStar({from: firstOwner})
+    var result = await instance.starOwner.call()
+    assert.equal(result, secondOwner)
+}) 
+```
+
+In order to run the test files we issue the following commands
+
+```bash
+truffle develop
+compile
+migrate --reset
+test
+``` 
 
