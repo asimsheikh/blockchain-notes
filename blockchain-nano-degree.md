@@ -399,3 +399,14 @@ migrate --reset
 test
 ``` 
 
+### Tokenize StarNotary contract using ERC721 
+
+The ERC721 contract is for Non Fungible Tokens which are tokens that have a
+unique identity. In order to enable these on the Ethereum blockchain, a standard
+was defined. 
+
+[OpenZeppelin](https://openzeppelin.com/contracts/) provides implementations of
+this and othe standards so that we can utilise secure and community vetted
+contracts and use them in our Dapp applications.
+
+
